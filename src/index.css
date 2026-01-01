@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+/* =========================
+   ADD THEME - LIGHT + DARK
+   ========================= */
+@theme {
+  /* LIGHT MODE */
+  --color-bg: #eef4fb;
+  --color-surface: #ffffff;
+  --color-glass: rgba(255, 255, 255, 0.7);
+
+  --color-primary: #4f8cff;
+  --color-secondary: #7fb3ff;
+
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-border: #e2e8f0;
+
+  /* DARK MODE */
+  --color-bg-dark: #0e1628;
+  --color-surface-dark: #141d33;
+  --color-glass-dark: rgba(20, 29, 51, 0.7);
+
+  --color-primary-dark: #7aa2ff;
+  --color-secondary-dark: #5b8cff;
+
+  --color-text-dark: #e5e7eb;
+  --color-text-muted-dark: #9aa4bf;
+  --color-border-dark: #24304a;
+  --container-padding: 1rem;
+}
