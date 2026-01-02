@@ -1,20 +1,40 @@
 import logo from "@Assets/logo.png";
+import actGetData from "@Store/data/actGetData";
 import { useAppDispatch, useAppSelector } from "@Store/hooks";
 import { toggleTheme } from "@Store/theme/themeSlice";
+import { useEffect, useState } from "react";
 import { FaRegSun, FaSun } from "react-icons/fa";
-
+import { FaBinoculars } from "react-icons/fa";
 const Navbar = () => {
   const { mode } = useAppSelector((state) => state.theme);
   const dispatch = useAppDispatch();
+
+  const [value, setValue] = useState<string>("");
 
   const handleMode = () => {
     dispatch(toggleTheme());
   };
 
+  const handleSearch = () => {
+    if (!value.trim()) return;
+    dispatch(actGetData(value.trim()));
+  };
+  useEffect(() => {
+    dispatch(actGetData("Cairo")); 
+  }, [dispatch]);
+  useEffect(() => {
+    if (!value.trim()) return;
+    const timer = setTimeout(() => {
+      handleSearch();
+    }, 1500);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [dispatch, value]);
   return (
     <nav
       className={`
-        container mx-auto w-full rounded-2xl my-4 border-b
+         px-2  w-full rounded-2xl my-4 border-b
         bg-bg dark:bg-bg-dark
         border-app dark:border-border-dark
       `}
@@ -25,19 +45,33 @@ const Navbar = () => {
             <img src={logo} alt="logo" className="h-10 w-auto" />
           </div>
 
-          <div className="mx-3 flex flex-1 justify-center">
-            <input
-              type="search"
-              placeholder="Search city..."
-              className={`
-                w-full sm:w-1/2 rounded-md px-3 py-2 text-sm
-                bg-surface dark:bg-surface-dark
-                text-text dark:text-text-dark
-                border border-border dark:border-border-dark
-                placeholder:text-text-muted dark:placeholder:text-text-muted-dark
-                focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-dark
-              `}
-            />
+          <div className="mx-3 flex-1 flex justify-center items-center">
+            <div className="relative w-full sm:w-1/2">
+              <input
+                type="search"
+                placeholder="Search city..."
+                className="
+        w-full rounded-md px-3 py-2 pr-10 text-sm
+        bg-surface dark:bg-surface-dark
+        text-text dark:text-text-dark
+        border border-border dark:border-border-dark
+        placeholder:text-text-muted dark:placeholder:text-text-muted-dark
+        focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-dark
+      "
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+              />
+              <button
+                className={`absolute right-2 cursor-pointer top-1/2 -translate-y-1/2 bg-bg dark:bg-bg-dark p-1.5 rounded-md text-text-muted dark:text-text-muted-dark hover:text-text dark:hover:text-text-dark ${
+                  !value.trim() ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                onClick={handleSearch}
+                aria-label="Search"
+                disabled={!value.trim()}
+              >
+                <FaBinoculars className="text-lg" />
+              </button>
+            </div>
           </div>
 
           <div className="ml-auto flex items-center gap-2">

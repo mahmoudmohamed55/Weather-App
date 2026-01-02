@@ -11,6 +11,7 @@ export default defineConfig({
       "@Assets": path.resolve(__dirname, "src/Assets"),
       "@Store": path.resolve(__dirname, "src/Store"),
       "@Layout": path.resolve(__dirname, "src/Layout"),
+      "@app-types": path.resolve(__dirname, "/src/types"),
     },
   },
   plugins: [react(), tailwindcss()],

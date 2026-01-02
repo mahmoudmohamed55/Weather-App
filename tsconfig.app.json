@@ -20,7 +20,8 @@
       "@Components/*": ["src/Components/*"],
       "@Assets/*": ["src/Assets/*"],
       "@Store/*": ["src/Store/*"],
-      "@Layout/*": ["src/Layout/*"]
+      "@Layout/*": ["src/Layout/*"],
+      "@app-types/*": ["src/types/*"]
     },
     /* Linting */
     "strict": true,
