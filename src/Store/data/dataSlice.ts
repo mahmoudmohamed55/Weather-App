@@ -6,17 +6,24 @@ import actGetData from "./actGetData";
 interface IDataState {
   records: WeatherPageUI | null;
   loading: TLoading;
+  temp: "C" | "F";
   error: string | null;
 }
 const initialState: IDataState = {
   records: null,
   loading: "idle",
+  temp: "C",
   error: null,
 };
 const dataSlice = createSlice({
-  name: "data",
+  name: "weather",
   initialState,
-  reducers: {},
+  reducers: {
+    toggleTemp: (state, action) => {
+      console.log(action.payload)
+      state.temp = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder.addCase(actGetData.pending, (state) => {
       state.loading = "loading";
@@ -25,9 +32,11 @@ const dataSlice = createSlice({
     builder.addCase(actGetData.fulfilled, (state, action) => {
       state.loading = "succeeded";
       state.records = action.payload ?? null;
+      console.log(action.payload);
     });
     builder.addCase(actGetData.rejected, (state, action) => {
-      state.loading = "loading";
+      state.loading = "failed";
+
       if (action.payload && typeof action.payload === "string") {
         state.error = action.payload;
       }
@@ -35,4 +44,5 @@ const dataSlice = createSlice({
   },
 });
 export default dataSlice.reducer;
+export const { toggleTemp } = dataSlice.actions;
 export { actGetData };

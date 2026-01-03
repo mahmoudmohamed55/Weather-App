@@ -1,16 +1,22 @@
 import logo from "@Assets/logo.png";
 import actGetData from "@Store/data/actGetData";
+import { toggleTemp } from "@Store/data/dataSlice";
 import { useAppDispatch, useAppSelector } from "@Store/hooks";
 import { toggleTheme } from "@Store/theme/themeSlice";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { FaRegSun, FaSun } from "react-icons/fa";
 import { FaBinoculars } from "react-icons/fa";
 const Navbar = () => {
   const { mode } = useAppSelector((state) => state.theme);
   const dispatch = useAppDispatch();
-
+  const { error, temp } = useAppSelector((state) => state.weather);
   const [value, setValue] = useState<string>("");
+  type TempUnit = "C" | "F";
 
+  const handleTemp = (unit: TempUnit) => {
+    dispatch(toggleTemp(unit));
+  };
   const handleMode = () => {
     dispatch(toggleTheme());
   };
@@ -20,7 +26,7 @@ const Navbar = () => {
     dispatch(actGetData(value.trim()));
   };
   useEffect(() => {
-    dispatch(actGetData("Cairo")); 
+    dispatch(actGetData("Cairo"));
   }, [dispatch]);
   useEffect(() => {
     if (!value.trim()) return;
@@ -31,10 +37,19 @@ const Navbar = () => {
       clearTimeout(timer);
     };
   }, [dispatch, value]);
+  useEffect(() => {
+    if (!error) return;
+
+    toast.error("City not found 🌍", {
+      duration: 1000,
+      id: "city-not-found",
+    });
+  }, [error]);
+
   return (
     <nav
       className={`
-         px-2  w-full rounded-2xl my-4 border-b
+           rounded-2xl my-4 border-b
         bg-bg dark:bg-bg-dark
         border-app dark:border-border-dark
       `}
@@ -90,22 +105,32 @@ const Navbar = () => {
             <button
               className={`
                 cursor-pointer rounded-md px-3 py-2 text-sm
-                bg-surface dark:bg-surface-dark
-                text-text dark:text-text-dark
+            
                 border border-border dark:border-border-dark
                 hover:bg-primary hover:text-white dark:hover:bg-primary-dark dark:hover:text-white
+                ${
+                  temp === "C"
+                    ? "bg-primary text-white dark:bg-primary-dark dark:text-white"
+                    : "  bg-surface dark:bg-surface-dark   text-text dark:text-text-dark "
+                }
               `}
+              onClick={() => handleTemp("C")}
             >
               °C
             </button>
             <button
               className={`
                 cursor-pointer rounded-md px-3 py-2 text-sm
-                bg-surface dark:bg-surface-dark
-                text-text dark:text-text-dark
+              
                 border border-border dark:border-border-dark
                 hover:bg-primary hover:text-white dark:hover:bg-primary-dark dark:hover:text-white
+                              ${
+                                temp === "F"
+                                  ? "bg-primary text-white dark:bg-primary-dark dark:text-white"
+                                  : "  bg-surface dark:bg-surface-dark   text-text dark:text-text-dark "
+                              }
               `}
+              onClick={() => handleTemp("F")}
             >
               °F
             </button>

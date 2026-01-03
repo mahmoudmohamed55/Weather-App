@@ -1,11 +1,14 @@
 import MainLayout from "@Layout/MainLayout/MainLayout";
-import { useAppDispatch, useAppSelector } from "@Store/hooks";
-import { toggleTheme } from "@Store/theme/themeSlice";
+import { useAppSelector } from "@Store/hooks";
+
 import { useEffect } from "react";
 import "./index.css";
+import Today from "@Components/WeatherUi/Today";
+import { Toaster } from "react-hot-toast";
+import Tomorrow from "@Components/WeatherUi/Tomorrow";
+import AfterTomorrow from "@Components/WeatherUi/AfterTomorrow";
 
 const App = () => {
-  const dispatch = useAppDispatch();
   const { mode } = useAppSelector((state) => state.theme);
   useEffect(() => {
     const root = document.documentElement;
@@ -18,13 +21,17 @@ const App = () => {
 
   return (
     <>
+      <Toaster position="top-center" />
       <MainLayout>
-        <button
-          className="text-black dark:text-white"
-          onClick={() => dispatch(toggleTheme())}
-        >
-          Toggle Theme
-        </button>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+          <div className="md:col-span-5">
+            <Today />
+          </div>
+          <div className="md:col-span-7">
+            <Tomorrow />
+            <AfterTomorrow />
+          </div>
+        </div>
       </MainLayout>
     </>
   );

@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import theme from "@Store/theme/themeSlice";
+import weather from "@Store/data/dataSlice";
 import {
   persistStore,
   persistReducer,
@@ -18,6 +19,7 @@ const rootConfig = {
 };
 const rootreducer = combineReducers({
   theme,
+  weather,
 });
 const persistedReducer = persistReducer(rootConfig, rootreducer);
 const store = configureStore({

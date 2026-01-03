@@ -1,6 +1,9 @@
 export type CurrentWeatherUI = {
   temperature: number;
-  conditionText: string;
+  condition: {
+    text: string;
+    icon: string;
+  };
   icon: string;
 
   latitude: number;
@@ -10,7 +13,8 @@ export type CurrentWeatherUI = {
   minTemp: number;
   maxTemp: number;
   feelsLike: number;
-
+  temp_c: string;
+  temp_f: string;
   cloudCover: number;
   chanceOfRain: number;
 

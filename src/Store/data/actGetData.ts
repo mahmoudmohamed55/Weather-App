@@ -3,8 +3,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const actGetData = createAsyncThunk(
-  "data/actGetData",
-  async (city: string , thunkAPi) => {
+  "weather/actGetData",
+  async (city: string, thunkAPi) => {
     const { rejectWithValue, signal } = thunkAPi;
     try {
       const res = await axios.get<WeatherPageUI>(
@@ -16,7 +16,7 @@ const actGetData = createAsyncThunk(
       console.log(res.data);
       return res.data;
     } catch (error) {
-      rejectWithValue(error);
+      return rejectWithValue(error.response?.data?.message || "City not found");
     }
   }
 );

@@ -4,6 +4,6 @@ import type { WeatherLocationUI } from "./WeatherLocationUI ";
 
 export type WeatherPageUI = {
   location: WeatherLocationUI;
-  today: CurrentWeatherUI;
+  current: CurrentWeatherUI;
   forecast: ForecastDayUI[];
 };

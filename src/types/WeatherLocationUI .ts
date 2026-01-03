@@ -4,4 +4,6 @@ export type WeatherLocationUI = {
   city: string;
   date: string;
   label?: "Today" | "Tomorrow" | "After Tomorrow";
+  lon: number;
+  lat: number;
 };
