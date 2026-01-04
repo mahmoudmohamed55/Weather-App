@@ -5,13 +5,14 @@ import Temp from "@Components/temp/temp";
 const AfterTomorrow = () => {
   const { location, forecast, temp } = UseHeader();
 
-  const tomorrow = forecast?.forecastday[2];
+  const tomorrow = forecast?.forecastday[2]; // صح دلوقتي
   const isC = temp === "C";
+  console.log(tomorrow);
 
   if (!tomorrow) return null;
 
   return (
-    <div className="bg-bg/50 dark:bg-bg-dark/70 p-3 mt-4 rounded-2xl flex flex-col flex-1">
+    <div className="bg-bg/50 dark:bg-bg-dark/70 p-3 rounded-2xl">
       <Header
         city={location?.name || ""}
         country={location?.country || ""}
@@ -20,7 +21,7 @@ const AfterTomorrow = () => {
       />
 
       {/* Main Temp */}
-      <div className="mt-8 text-center">
+      <div className="my-8 text-center">
         <p className="text-7xl font-bold text-gray-800 dark:text-gray-200">
           {isC ? tomorrow.day.maxtemp_c : tomorrow.day.maxtemp_f}
           <span className="text-2xl">°{temp}</span>

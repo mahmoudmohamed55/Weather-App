@@ -37,27 +37,28 @@ const Today = () => {
         items={[
           {
             title: "Minimum Temperature",
-            value: isC ? today?.mintemp_c : today?.mintemp_f,
+         value: isC ? today?.mintemp_c ?? 0 : today?.mintemp_f ?? 0
+
           },
           {
             title: "Average Temperature",
-            value: isC ? today?.avgtemp_c : today?.avgtemp_f,
+            value: isC ? today?.avgtemp_c ?? 0 : today?.avgtemp_f ?? 0,
           },
           {
             title: "Maximum Temperature",
-            value: isC ? today?.maxtemp_c : today?.maxtemp_f,
+            value: isC ? today?.maxtemp_c ?? 0 : today?.maxtemp_f ?? 0,
           },
           {
             title: "Chance of Rain",
-            value: today?.daily_chance_of_rain,
+            value: today?.daily_chance_of_rain ?? 0,
           },
           {
             title: "Humidity",
-            value: today?.avghumidity,
+            value: today?.avghumidity ?? 0,
           },
           {
             title: "Wind Speed",
-            value: isC ? today?.maxwind_kph : today?.maxwind_mph,
+            value: isC ? today?.maxwind_kph ?? 0 : today?.maxwind_mph ?? 0,
           },
         ]}
       />
