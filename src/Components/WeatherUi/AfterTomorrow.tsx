@@ -11,7 +11,7 @@ const AfterTomorrow = () => {
   if (!tomorrow) return null;
 
   return (
-    <div className="bg-bg/50 dark:bg-bg-dark/70 p-3 rounded-2xl">
+    <div className="bg-bg/50 dark:bg-bg-dark/70 p-3 mt-4 rounded-2xl flex flex-col flex-1">
       <Header
         city={location?.name || ""}
         country={location?.country || ""}
@@ -20,7 +20,7 @@ const AfterTomorrow = () => {
       />
 
       {/* Main Temp */}
-      <div className="my-8 text-center">
+      <div className="mt-8 text-center">
         <p className="text-7xl font-bold text-gray-800 dark:text-gray-200">
           {isC ? tomorrow.day.maxtemp_c : tomorrow.day.maxtemp_f}
           <span className="text-2xl">°{temp}</span>

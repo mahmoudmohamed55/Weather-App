@@ -11,7 +11,7 @@ const Tomorrow = () => {
   if (!tomorrow) return null;
 
   return (
-    <div className="bg-bg/50 dark:bg-bg-dark/70 p-3 rounded-2xl">
+    <div className="bg-bg/50 dark:bg-bg-dark/70 p-3 rounded-2xl flex-1">
       <Header
         city={location?.name || ""}
         country={location?.country || ""}
@@ -20,7 +20,7 @@ const Tomorrow = () => {
       />
 
       {/* Main Temp */}
-      <div className="my-8 text-center">
+      <div className="my-8 text-center ">
         <p className="text-7xl font-bold text-gray-800 dark:text-gray-200">
           {isC ? tomorrow.day.maxtemp_c : tomorrow.day.maxtemp_f}
           <span className="text-2xl">°{temp}</span>
@@ -37,36 +37,38 @@ const Tomorrow = () => {
         </p>
       </div>
 
-      {/* Details */}
-      <Temp
-        temp={temp}
-        items={[
-          {
-            title: "Minimum Temperature",
-            value: isC ? tomorrow.day.mintemp_c : tomorrow.day.mintemp_f,
-          },
-          {
-            title: "Average Temperature",
-            value: isC ? tomorrow.day.avgtemp_c : tomorrow.day.avgtemp_f,
-          },
-          {
-            title: "Maximum Temperature",
-            value: isC ? tomorrow.day.maxtemp_c : tomorrow.day.maxtemp_f,
-          },
-          {
-            title: "Chance of Rain",
-            value: `${tomorrow.day.daily_chance_of_rain}%`,
-          },
-          {
-            title: "Humidity",
-            value: `${tomorrow.day.avghumidity}%`,
-          },
-          {
-            title: "Wind Speed",
-            value: `${tomorrow.day.maxwind_mph} mph`,
-          },
-        ]}
-      />
+      <div className="my-4">
+        {/* Details */}
+        <Temp
+          temp={temp}
+          items={[
+            {
+              title: "Minimum Temperature",
+              value: isC ? tomorrow.day.mintemp_c : tomorrow.day.mintemp_f,
+            },
+            {
+              title: "Average Temperature",
+              value: isC ? tomorrow.day.avgtemp_c : tomorrow.day.avgtemp_f,
+            },
+            {
+              title: "Maximum Temperature",
+              value: isC ? tomorrow.day.maxtemp_c : tomorrow.day.maxtemp_f,
+            },
+            {
+              title: "Chance of Rain",
+              value: `${tomorrow.day.daily_chance_of_rain}%`,
+            },
+            {
+              title: "Humidity",
+              value: `${tomorrow.day.avghumidity}%`,
+            },
+            {
+              title: "Wind Speed",
+              value: `${tomorrow.day.maxwind_mph} mph`,
+            },
+          ]}
+        />
+      </div>
     </div>
   );
 };

@@ -4,7 +4,7 @@ export type ForecastDayUI = {
   temperature: number;
   conditionText: string;
   icon: string;
-  ForecastDay: {
+  forecastday: {
     date: string;
     day: {
       maxtemp_c: number;

@@ -4,13 +4,13 @@ import Navbar from "@Components/common/Navbar";
 import sunny from "@Assets/sunny-back.jpg";
 import snow from "@Assets/snow-back.jpg";
 import cloud from "@Assets/cloud-back.jpg";
-import  UseHeader from "@Components/header/useHeader";
+import UseHeader from "@Components/header/useHeader";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const { current } = UseHeader();
   return (
     <div
-      className={`flex flex-col  min-h-screen bg-cover bg-center bg-bg dark:bg-bg-dark transition-all duration-500 ease-in-out`}
+      className={`flex flex-col  min-h-screen bg-cover bg-center  bg-bg dark:bg-bg-dark transition-all duration-500 ease-in-out`}
       style={{
         backgroundImage: `url(${
           current?.condition.text === "Partly Cloudy" ||

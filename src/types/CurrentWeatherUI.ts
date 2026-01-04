@@ -4,32 +4,34 @@ export type CurrentWeatherUI = {
     text: string;
     icon: string;
   };
-  icon: string;
+  lat: number;
+  lon: number;
 
-  latitude: number;
-  longitude: number;
+  // From forecast today
+  mintemp_c: number;
+  mintemp_f: number;
+  avgtemp_c: number;
+  avgtemp_f: number;
+  maxtemp_c: number;
+  maxtemp_f: number;
+  daily_chance_of_rain: number;
+  avghumidity: number;
+  maxwind_kph: number;
+  maxwind_mph: number;
+  temp_c: number;
+  temp_f: number;
 
-  avgTemp: number;
-  minTemp: number;
-  maxTemp: number;
-  feelsLike: number;
-  temp_c: string;
-  temp_f: string;
-  cloudCover: number;
-  chanceOfRain: number;
-
-  pressure: number;
+  // From current
+  pressure_mb: number;
   humidity: number;
-
-  windSpeedMph: number;
-  windSpeedKph: number;
-  windDirection: string;
-  windDegree: number;
-  windGustKph: number;
-
-  windChill: number;
-  visibilityKm: number;
-  dewPoint: number;
-  uvIndex: number;
-  precipitationMm: number;
+  wind_mph: number;
+  wind_dir: string;
+  wind_degree: number;
+  wind_kph: number;
+  gust_kph: number;
+  vis_km: number;
+  dewpoint_c: number;
+  dewpoint_f: number;
+  uv: number;
+  precip_mm: number;
 };
