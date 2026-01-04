@@ -16,7 +16,13 @@ const actGetData = createAsyncThunk(
       console.log(res.data);
       return res.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || "City not found");
+      if (axios.isAxiosError(error)) {
+        return rejectWithValue(
+          error.response?.data?.message || "City not found"
+        );
+      } else {
+        return rejectWithValue("City not found");
+      }
     }
   }
 );
